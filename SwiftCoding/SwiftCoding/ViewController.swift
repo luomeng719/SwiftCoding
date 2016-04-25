@@ -7,13 +7,27 @@
 //
 
 import UIKit
+import Crashlytics
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        let button = UIButton(type: UIButtonType.RoundedRect)
+        button.frame = CGRectMake(20, 350, 100, 30)
+        button.setTitle("Crash", forState: UIControlState.Normal)
+        button.addTarget(self, action: #selector(crashButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(button)
+        
     }
+    
+    @IBAction func crashButtonTapped(sender: AnyObject) {
+        Crashlytics.sharedInstance().crash()
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

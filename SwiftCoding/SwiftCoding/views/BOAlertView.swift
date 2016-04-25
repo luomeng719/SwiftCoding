@@ -10,21 +10,30 @@ import UIKit
 
 class BOAlertView: UIView {
 
-    private var alertTitleLabel: UILabel!
-    private var alertContentLabel: UILabel!
-    private var leftBtn: UIButton!
-    private var rightBtn: UIButton!
+    private var alertTitleLabel: UILabel
+    private var alertContentLabel: UILabel
+    private var leftBtn: UIButton
+    private var rightBtn: UIButton
     lazy private var backgroundView: UIView = UIView.init()
     
     // MARK: constant
     private let kAlertWidth: CGFloat = 245.0
-    private let kAlertHeight: CGFloat = 160.0
     private let kTitleYOffset: CGFloat = 15.0
     private let kTitleHeight: CGFloat = 25.0
     private let kContentOffset: CGFloat = 30.0
     private let kContentWidth: CGFloat = 230.0
     private let kBetweenLabelOffset: CGFloat = 20.0
+    private let kBtnHeight: CGFloat = 40.0
+    private let kBtnBottomOffset: CGFloat = 10
+    
+    // Mutable
     private var _leftLeave = false
+    private var kAlertHeight: CGFloat = 160.0
+    private var contentHeight: CGFloat = 60 {
+        didSet {
+            self.kAlertHeight = kTitleYOffset + kTitleHeight + contentHeight + kBetweenLabelOffset + kBtnHeight + kBtnBottomOffset
+        }
+    }
     
     // MARK: public propertity
     var leftBlock: dispatch_block_t!
@@ -59,22 +68,24 @@ class BOAlertView: UIView {
         self.alertTitleLabel.textAlignment = .Center
         self.addSubview(self.alertTitleLabel)
         
-        self.alertContentLabel.frame = CGRectMake((kAlertWidth - kContentWidth) * 0.5, CGRectGetMaxY(self.alertTitleLabel.frame), kContentWidth, 60)
+        let contentNSStr = contentText! as NSString
+        let contentFont = UIFont.systemFontOfSize(15.0)
+        let size = contentNSStr.boundingRectWithSize(CGSizeMake(kContentWidth, CGFloat(9999)), options:NSStringDrawingOptions.UsesLineFragmentOrigin, attributes:[NSFontAttributeName:contentFont], context: nil)
+        contentHeight = size.height
+        self.alertContentLabel.frame = CGRectMake((kAlertWidth - kContentWidth) * 0.5, CGRectGetMaxY(self.alertTitleLabel.frame), kContentWidth, contentHeight)
         self.alertContentLabel.numberOfLines = 0
         self.alertContentLabel.textAlignment = .Center
         self.alertContentLabel.textColor = UIColor.init(red: 127.0/255, green: 127.0/255, blue: 127.0/255, alpha: 1)
-        self.alertContentLabel.font = UIFont.systemFontOfSize(15)
+        self.alertContentLabel.font = contentFont
         self.addSubview(self.alertContentLabel)
         
         let kSingleBtnWidth: CGFloat = 160.0
         let kCoupleBtnWidth: CGFloat = 107.0
-        let kBtnHeight: CGFloat = 40.0
-        let kBtnBottomOffset: CGFloat = 10.0
         
         var leftBtnFrame: CGRect!
         var rightBtnFrame: CGRect!
         if leftTitle == nil {
-            rightBtnFrame = CGRectMake((self.kAlertWidth - kSingleBtnWidth) * 0.5, kAlertHeight - kBtnBottomOffset - kBtnHeight, kSingleBtnWidth, kBtnHeight)
+            rightBtnFrame = CGRectMake((self.kAlertWidth - kSingleBtnWidth) * 0.5, kAlertHeight - kBtnBottomOffset - self.kBtnHeight, kSingleBtnWidth, self.kBtnHeight)
             self.rightBtn = UIButton.init(type: .Custom)
             self.rightBtn.frame = rightBtnFrame
         } else {

@@ -13,6 +13,8 @@
 		6C14F1BF1CC8A74B00F95F7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C14F1BE1CC8A74B00F95F7F /* Assets.xcassets */; };
 		6C14F1C21CC8A74B00F95F7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C14F1C01CC8A74B00F95F7F /* LaunchScreen.storyboard */; };
 		6C14F1CB1CC8A7DE00F95F7F /* BOAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C14F1CA1CC8A7DE00F95F7F /* BOAlertView.swift */; };
+		6C53E4A71CC9D10D009E59A9 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C53E4A51CC9D10D009E59A9 /* Fabric.framework */; };
+		6C53E4A81CC9D10D009E59A9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C53E4A61CC9D10D009E59A9 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		6C14F1C11CC8A74B00F95F7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C14F1C31CC8A74B00F95F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C14F1CA1CC8A7DE00F95F7F /* BOAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BOAlertView.swift; sourceTree = "<group>"; };
+		6C53E4A51CC9D10D009E59A9 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		6C53E4A61CC9D10D009E59A9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C53E4A81CC9D10D009E59A9 /* Crashlytics.framework in Frameworks */,
+				6C53E4A71CC9D10D009E59A9 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +67,8 @@
 				6C14F1B91CC8A74B00F95F7F /* ViewController.swift */,
 				6C14F1BB1CC8A74B00F95F7F /* Main.storyboard */,
 				6C14F1BE1CC8A74B00F95F7F /* Assets.xcassets */,
+				6C53E4A51CC9D10D009E59A9 /* Fabric.framework */,
+				6C53E4A61CC9D10D009E59A9 /* Crashlytics.framework */,
 				6C14F1C01CC8A74B00F95F7F /* LaunchScreen.storyboard */,
 				6C14F1C31CC8A74B00F95F7F /* Info.plist */,
 			);
@@ -85,6 +93,7 @@
 				6C14F1B01CC8A74B00F95F7F /* Sources */,
 				6C14F1B11CC8A74B00F95F7F /* Frameworks */,
 				6C14F1B21CC8A74B00F95F7F /* Resources */,
+				6C53E4A41CC9D0A5009E59A9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -141,6 +150,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C53E4A41CC9D0A5009E59A9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run e9b593d17e2305c425b5cbbe3efe946ddd52cafc e1cf115c014a0a36c6852f32f03f8668fa5f952705d1504ef9873c542f8b39bf";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6C14F1B01CC8A74B00F95F7F /* Sources */ = {
@@ -262,6 +287,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SwiftCoding/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luo.SwiftCoding;
@@ -273,6 +302,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SwiftCoding/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luo.SwiftCoding;
@@ -299,6 +332,7 @@
 				6C14F1C81CC8A74B00F95F7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
